@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <h1 data-translation="header">Hello World</h1>
+    <select name="language" onchange="translator.addTranslations(event.target.value, 'home')">
+      <option value="en">English</option>
+      <option value="sv">Swedish</option>
+    </select>
+  </header>
+  <p data-translation="body">This is a text in english</p>
+  <p data-translation="signupCost">The cost of signing up is {price} money units, yes the price is {price}</p>
+  <a href="/page2" data-translation="signupButtonText">Sign up</a>
+  <script src="/translations/Translator.js"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>

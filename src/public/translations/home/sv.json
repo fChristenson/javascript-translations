@@ -1,0 +1,6 @@
+{
+  "header": "Hej Världen",
+  "body": "Detta är en text på svenska",
+  "signupCost": "Registrering kostar {price} enheter av pengar, ja det kostar {price}",
+  "signupButtonText": "Registrera"
+}

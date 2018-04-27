@@ -1,0 +1,6 @@
+{
+  "header": "Hello World",
+  "body": "This is a text in english",
+  "signupCost": "The cost of signing up is {price} money units, yes the price is {price}",
+  "signupButtonText": "Sign up"
+}
