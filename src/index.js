@@ -3,6 +3,16 @@ const app = express();
 const path = require("path");
 
 // languages
+/* 
+  I have found that the easiest way to maintain translations
+  over time is to scope each translation file to the page level
+  and give each translation a unique key.
+  
+  DO NOT try to reuse translations unless you are 100% sure that
+  the reused text is the EXACT same for every situation, trust me
+  when I say that the same word has different meanings and tone
+  for every language and context.
+*/
 const homeSwedish = require("./public/translations/home/sv.json");
 const homeEnglish = require("./public/translations/home/en.json");
 
