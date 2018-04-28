@@ -11,7 +11,7 @@
 <body>
   <header>
     <h1 data-translation="header">Hello World</h1>
-    <select name="language" onchange="translator.addTranslations(event.target.value, 'home')">
+    <select name="language" onchange="translator.loadTranslations(event.target.value, 'home')">
       <option value="en">English</option>
       <option value="sv">Swedish</option>
     </select>

@@ -1,8 +1,12 @@
 class Translator {
-  constructor() {
+  // passing in the window object will allow us to test the code without
+  // needing a lot of extra work
+  constructor(window) {
+    this.fetch = window.fetch.bind(window);
+    this.document = window.document;
     this.languages = {};
     this.translationListeners = [];
-    this.addTranslations = this.addTranslations.bind(this);
+    this.loadTranslations = this.loadTranslations.bind(this);
     this.translate = this.translate.bind(this);
     this.addTranslationListener = this.addTranslationListener.bind(this);
     this._callTranslationListeners = this._callTranslationListeners.bind(this);
@@ -10,18 +14,18 @@ class Translator {
   }
 
   // we call this when the user changes language
-  async addTranslations(lang, page) {
+  async loadTranslations(lang, page) {
     if (typeof this.languages[lang] === "object") {
       this._applyTranslations(this.languages[lang], lang);
       return this._callTranslationListeners(this.translationListeners, lang);
     }
 
-    const res = await fetch(
+    const res = await this.fetch(
       `http://localhost:3000/lang?q=${lang}&page=${page}`
     );
     const json = await res.json();
     this.languages[lang] = json;
-    this._applyTranslations(this.languages[lang], lang);
+    this._applyTranslations(this.languages[lang], lang, this.document);
     return this._callTranslationListeners(this.translationListeners, lang);
   }
 
@@ -29,8 +33,10 @@ class Translator {
   translate(lang, key, options) {
     const unformattedText = this.languages[lang] && this.languages[lang][key];
 
-    if (!unformattedText)
-      return console.warn(`Missing translation ${key} for language ${lang}`);
+    if (!unformattedText) {
+      console.warn(`Missing translation ${key} for language ${lang}`);
+      return "missing";
+    }
 
     const keys = Object.keys(options);
 
@@ -52,7 +58,7 @@ class Translator {
   }
 
   // we grab all the translations elements and set the translated text
-  _applyTranslations(translations, lang) {
+  _applyTranslations(translations, lang, document) {
     const elementsToTranslate = document.querySelectorAll("[data-translation]");
 
     elementsToTranslate.forEach(element => {
@@ -68,4 +74,4 @@ class Translator {
   }
 }
 
-const translator = new Translator();
+const translator = new Translator(window);

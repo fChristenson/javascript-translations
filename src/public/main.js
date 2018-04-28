@@ -8,7 +8,7 @@ if (!langSelect) throw new Error("langSelect not found");
 if (!signupCostParagraph) throw new Error("signupCostParagraph not found");
 
 // We can also load a default language
-//translator.addTranslations("en", "home");
+//translator.loadTranslations("en", "home");
 
 // if we want to add dynamic values we need a way to know when the
 // user changes the translations
