@@ -33,25 +33,35 @@ app.get("/page2", (req, res) => {
 });
 
 app.get("/lang", (req, res) => {
-  switch (req.query.q) {
-    case "sv":
-      switch (req.query.page) {
-        case "home":
-          return res.json(homeSwedish);
+  const { q, page } = req.query;
 
-        default:
-          return res.json(page2Swedish);
-      }
+  switch (q) {
+    case "sv":
+      return getSwedishTranslations(page, res);
 
     default:
-      switch (req.query.page) {
-        case "home":
-          return res.json(homeEnglish);
-
-        default:
-          return res.json(page2English);
-      }
+      return getEnglishTranslations(page, res);
   }
 });
+
+const getSwedishTranslations = (page, res) => {
+  switch (page) {
+    case "home":
+      return res.json(homeSwedish);
+
+    default:
+      return res.json(page2Swedish);
+  }
+};
+
+const getEnglishTranslations = (page, res) => {
+  switch (page) {
+    case "home":
+      return res.json(homeEnglish);
+
+    default:
+      return res.json(page2English);
+  }
+};
 
 module.exports = app;
