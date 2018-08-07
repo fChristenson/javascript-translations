@@ -43,7 +43,7 @@ class Translator {
     return keys.reduce((str, key) => {
       const regexp = new RegExp(`{${key}}`, "g");
       const value = options[key];
-      return unformattedText.replace(regexp, value);
+      return str.replace(regexp, value);
     }, unformattedText);
   }
 
