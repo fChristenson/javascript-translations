@@ -16,7 +16,7 @@ class Translator {
   // we call this when the user changes language
   async loadTranslations(lang, page) {
     if (typeof this.languages[lang] === "object") {
-      this._applyTranslations(this.languages[lang], lang);
+      this._applyTranslations(this.languages[lang], lang, this.document);
       return this._callTranslationListeners(this.translationListeners, lang);
     }
 
