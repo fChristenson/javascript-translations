@@ -1,11 +1,6 @@
-const langSelect = document.querySelector("[name=language]");
 const signupCostParagraph = document.querySelector(
   "[data-translation=signupCost]"
 );
-
-// we make sure we have what we need to execute the script
-if (!langSelect) throw new Error("langSelect not found");
-if (!signupCostParagraph) throw new Error("signupCostParagraph not found");
 
 // We can also load a default language
 translator.loadTranslations("en", "home");
